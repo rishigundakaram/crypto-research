@@ -1,0 +1,19 @@
+steps: 
+1. gather historical data
+3 from each catergory
+transaction mechanism - Bitcoin, litecoin, ZCash
+distributed computation -  Ethereum, EOS, DFinity, (Tezos, DFinity)
+utility - Golem, storj, sia
+security - STOs (what coins are here)
+fungible - ERC-20
+non-fungible - (ERC-721, Dhrama debt, Cryptokitties, Decentraland)
+stablecoins - 4 catergories, collateralized differently (probably can do a whole svd on just this)
+    fiat currency - tether, USDC, (LBXPeg, candy)
+    assets - Digix Gold, (Tiberius coin, Swiss Real Coin)
+    cryptocurrency - MakerDao
+    uncollateralized - basecoin
+
+Let's attempt to use data from mostly one site
+Assumptions
+- price discrepencies between different coin exchanges are not 
+significant in the long term. 
