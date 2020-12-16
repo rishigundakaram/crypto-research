@@ -1,7 +1,20 @@
 import numpy as np
 import os
+import stackprinter
 from clean import normalizer_percent_change, normalizer_log, time_series, filter_time_series
 from pprint import pprint
+from matplotlib import pyplot as plt
+from matplotlib.pyplot import figure
+figure(figsize=(11,9))
+
+stackprinter.set_excepthook(style='darkbg2')
+
+dates_str =  {
+    'total time': ['2017-05-01', '2020-11-25'],
+    'pre-crash': ['2017-05-01', '2017-12-17'],
+    'crash': ['2017-12-22', '2018-12-22'], 
+    'post-crash': ['2018-12-22', '2020-11-25'],
+}
 
 def time_series_matrix(data): 
     labels = []
@@ -29,40 +42,44 @@ def calculate_energy(singular):
     levels = [i / total_energy for i in levels]
     return levels
 
-def singular_value_script(): 
-    coins = ['BTC', 'LTC', 'USDT', 'ETH', 'SC', 'ZEC', 'GNT', 'EOS', 'STORJ', 'ERC20', 'DGX', 'XTZ', 'USDC', 'DFN']
-    for i in range(3, len(coins)): 
-        data = time_series(coins[:i], period='month')
-        matrix, temp = time_series_matrix(data, fill=False)
-        _, s, _ = np.linalg.svd(matrix)
-        energy = calculate_energy(s)
-        assert(temp == coins[:i])
-        if (energy[2] > .9): 
-            print(f"success: {coins[:i]}\nsingular values: {s}\nenergy: {energy[2]}")
-        else: 
-            print(f"failure: energy: {energy[2]}")
 
-def singular_value_script_2():
+def singular_value_script():
     coins = os.listdir('./data')
-    dates = [
-        ['2017-05-01', '2020-11-25'], 
-        ['2017-05-01', '2017-12-17'], 
-        ['2017-12-22', '2018-12-22'], 
-        ['2018-12-22', '2020-11-25']
-    ]
+    dates = ['total time', 'pre-crash', 'crash', 'post-crash']
     periods = ['week', 'month']
     data = time_series(coins)
 
     for period in periods:
         for date in dates:
-            cur_data = filter_time_series(data, start_date=date[0], end_date=date[1], period=period, normalizer=normalizer_log)
+            cur_data = filter_time_series(data, start_date=dates_str[date][0], end_date=dates_str[date][1], period=period, normalizer=normalizer_log)
             matrix, labels = time_series_matrix(cur_data)
-            _, s, _ = np.linalg.svd(matrix)
+            p, s, q = np.linalg.svd(matrix, full_matrices=False)
             energy = calculate_energy(s)
-            print(f"coins: {labels}\nnum coins: {len(labels)}\nenergy: {energy[2]}\nperiod: {period}\nrange: {date}")
+            plot_svd_2D(p, s, q, labels, round(energy[2], 3), period, date, 'log')
+            # print(f"coins: {labels}\nnum coins: {len(labels)}\nenergy: {energy[2]}\nperiod: {period}\nrange: {date}")
+
+def plot_svd_2D(p, s, q, labels, energy, period, timeframe, normalizer): 
+    coim_trunc = q[:2,:]
+    p_trunc = p[:,:2]
+    approx = s[0] * np.outer(p_trunc[:,0], coim_trunc[0,:]) 
+    approx = approx + s[1] * np.outer(p_trunc[:,1], coim_trunc[1,:]) 
+    points = []
+    for i in range(np.shape(approx)[0]): 
+        point = np.linalg.pinv(coim_trunc.T) @ np.matrix(approx[i,:]).T
+        point.flatten()
+        point = [np.matrix.tolist(i)[0][0] for i in point]
+        points.append(point)
+    points = np.array(points)
+    for i in range(len(labels)): 
+        plt.scatter(points[i,0], points[i,1], label=labels[i])
+    plt.legend()
+    plt.title(f"energy: {energy}, period: {period}, timeframe: {timeframe}")
+    plt.savefig(f"./plots/energy_{energy}_period_{period}_timeframe_{timeframe}_normalizaion_{normalizer}.png")
+    plt.clf()
+
 
 if __name__ == "__main__":
-    singular_value_script_2()
+    singular_value_script()
     exit(1)
 
 

@@ -22,3 +22,7 @@ significant in the long term.
 all coins from coin gecko
 need about 10 more coins from coins pre 2017
 month is definitely the way to go
+
+### TODO
+1. ensure that extremely high variance data is not included towards the beginning of a cryptos life 
+2. map observation matrix to reduced version

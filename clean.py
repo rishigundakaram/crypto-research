@@ -1,11 +1,10 @@
 import pandas as pd 
 from datetime import date, datetime
-import stackprinter
 import matplotlib.pyplot as plt
 import numpy as np
 from pprint import pprint
 from math import log, log10
-# stackprinter.set_excepthook(style='darkbg2')
+# 
 
 default_start_date_str = '2010-1-1'
 default_start_date = datetime.strptime(default_start_date_str, '%Y-%m-%d')
