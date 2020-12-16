@@ -1,0 +1,40 @@
+coins: ['BTC', 'ZEC', 'SC', 'LTC', 'XRP', 'NEO', 'GRC', 'PPC', 'NMC', 'ETC', 'DOGE', 'USDT', 'GNT', 'NXT', 'XLM', 'VTC', 'DASH', 'XVG', 'ETH', 'XPM']
+num coins: 20
+energy: 0.801305882964991
+period: week
+range: ['2017-05-01', '2020-11-25']
+coins: ['BTC', 'ZEC', 'SC', 'LTC', 'XRP', 'NEO', 'AUR', 'GRC', 'PPC', 'NMC', 'ETC', 'DOGE', 'USDT', 'GNT', 'NXT', 'XLM', 'VTC', 'DASH', 'XVG', 'ETH', 'XPM']
+num coins: 21
+energy: 0.8976602184828527
+period: week
+range: ['2017-05-01', '2017-12-17']
+coins: ['ADA', 'BTC', 'ZEC', 'SC', 'LTC', 'XRP', 'BCH', 'NEO', 'AUR', 'GRC', 'NANO', 'PPC', 'NMC', 'ETC', 'DOGE', 'USDT', 'GNT', 'NXT', 'XLM', 'VTC', 'DASH', 'XVG', 'ETH', 'XPM', 'STORJ', 'EOS']
+num coins: 26
+energy: 0.7890534182773302
+period: week
+range: ['2017-12-22', '2018-12-22']
+coins: ['ADA', 'BTC', 'ZEC', 'SC', 'LTC', 'USDC', 'XRP', 'DFN', 'BCH', 'NEO', 'ERC20', 'XTZ', 'GRC', 'NANO', 'PPC', 'NMC', 'DGX', 'ETC', 'DOGE', 'USDT', 'GNT', 'NXT', 'XLM', 'VTC', 'DASH', 'XVG', 'ETH', 'XPM', 'STORJ', 'EOS']
+num coins: 30
+energy: 0.6551460494647514
+period: week
+range: ['2018-12-22', '2020-11-25']
+coins: ['BTC', 'ZEC', 'SC', 'LTC', 'XRP', 'NEO', 'GRC', 'PPC', 'NMC', 'ETC', 'DOGE', 'USDT', 'GNT', 'NXT', 'XLM', 'VTC', 'DASH', 'XVG', 'ETH', 'XPM']
+num coins: 20
+energy: 0.9430978421760527
+period: month
+range: ['2017-05-01', '2020-11-25']
+coins: ['BTC', 'ZEC', 'SC', 'LTC', 'TIT', 'XRP', 'NEO', 'AUR', 'GRC', 'PPC', 'NMC', 'ETC', 'DOGE', 'USDT', 'GNT', 'NXT', 'XLM', 'VTC', 'DASH', 'XVG', 'ETH', 'XPM']
+num coins: 22
+energy: 0.9685223689258146
+period: month
+range: ['2017-05-01', '2017-12-17']
+coins: ['ADA', 'BTC', 'ZEC', 'SC', 'LTC', 'XRP', 'BCH', 'NEO', 'AUR', 'GRC', 'NANO', 'PPC', 'NMC', 'ETC', 'DOGE', 'USDT', 'GNT', 'NXT', 'XLM', 'VTC', 'DASH', 'XVG', 'ETH', 'XPM', 'STORJ', 'EOS']
+num coins: 26
+energy: 0.9144337027802342
+period: month
+range: ['2017-12-22', '2018-12-22']
+coins: ['ADA', 'BTC', 'ZEC', 'SC', 'LTC', 'USDC', 'XRP', 'DFN', 'BCH', 'NEO', 'ERC20', 'XTZ', 'GRC', 'NANO', 'PPC', 'NMC', 'DGX', 'ETC', 'DOGE', 'USDT', 'GNT', 'NXT', 'XLM', 'VTC', 'DASH', 'XVG', 'ETH', 'XPM', 'STORJ', 'EOS']
+num coins: 30
+energy: 0.7349869434360197
+period: month
+range: ['2018-12-22', '2020-11-25']

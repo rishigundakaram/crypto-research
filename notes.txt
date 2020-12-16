@@ -17,3 +17,8 @@ Let's attempt to use data from mostly one site
 Assumptions
 - price discrepencies between different coin exchanges are not 
 significant in the long term. 
+
+2020-12-15
+all coins from coin gecko
+need about 10 more coins from coins pre 2017
+month is definitely the way to go
