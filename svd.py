@@ -5,6 +5,7 @@ from clean import normalizer_percent_change, normalizer_log, time_series, filter
 from pprint import pprint
 from matplotlib import pyplot as plt
 from matplotlib.pyplot import figure
+from sklearn.decomposition import PCA
 figure(figsize=(11,9))
 
 stackprinter.set_excepthook(style='darkbg2')
@@ -51,14 +52,15 @@ def singular_value_script():
 
     for period in periods:
         for date in dates:
-            cur_data = filter_time_series(data, start_date=dates_str[date][0], end_date=dates_str[date][1], period=period, normalizer=normalizer_log)
+            cur_data = filter_time_series(data, start_date=dates_str[date][0], 
+                end_date=dates_str[date][1], period=period, normalizer=normalizer_percent_change)
             matrix, labels = time_series_matrix(cur_data)
             p, s, q = np.linalg.svd(matrix, full_matrices=False)
             energy = calculate_energy(s)
-            plot_svd_2D(p, s, q, labels, round(energy[2], 3), period, date, 'log')
+            plot_svd_2D(p, s, q, labels, round(energy[2], 3), period, date, 'log', pca=True)
             # print(f"coins: {labels}\nnum coins: {len(labels)}\nenergy: {energy[2]}\nperiod: {period}\nrange: {date}")
 
-def plot_svd_2D(p, s, q, labels, energy, period, timeframe, normalizer): 
+def plot_svd_2D(p, s, q, labels, energy, period, timeframe, normalizer, pca=False): 
     coim_trunc = q[:2,:]
     p_trunc = p[:,:2]
     approx = s[0] * np.outer(p_trunc[:,0], coim_trunc[0,:]) 
@@ -70,11 +72,15 @@ def plot_svd_2D(p, s, q, labels, energy, period, timeframe, normalizer):
         point = [np.matrix.tolist(i)[0][0] for i in point]
         points.append(point)
     points = np.array(points)
+    if PCA: 
+        pc = PCA(n_components=2)
+        pc = pc.fit(points)
+        points = pc.fit_transform(points)
     for i in range(len(labels)): 
         plt.scatter(points[i,0], points[i,1], label=labels[i])
     plt.legend()
     plt.title(f"energy: {energy}, period: {period}, timeframe: {timeframe}")
-    plt.savefig(f"./plots/energy_{energy}_period_{period}_timeframe_{timeframe}_normalizaion_{normalizer}.png")
+    plt.savefig(f"./plots/pca/energy_{energy}_period_{period}_timeframe_{timeframe}_normalizaion_{normalizer}.png")
     plt.clf()
 
 
