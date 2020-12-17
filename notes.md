@@ -25,4 +25,3 @@ month is definitely the way to go
 
 ### TODO
 1. ensure that extremely high variance data is not included towards the beginning of a cryptos life 
-2. map observation matrix to reduced version
